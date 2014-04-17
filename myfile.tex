@@ -1,0 +1,106 @@
+\documentclass{beamer}
+
+\mode<presentation> {
+\usetheme{Madrid}
+}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\title[Short Title]{brightboard:a video-augmented environment}
+\begin{document}
+\maketitle
+\begin{frame}
+\frametitle{2 contents:}
+1                Introduction       Achieving Augmented Environments       BrightBoard: The Whiteboard as a User Interface       What is BrightBoard?       How does BrightBoard Work?               Triggering         Thresholding         Item recognition         Analysing         Executing               Future Possibilities       Conclusions       Acknowledgements       References             \\
+\end{frame}
+\begin{frame}
+\frametitle{3 introduction}
+1  Video cameras can now be produced, with controlling circuitry, on a single chip \\2  Digital output reduces the need for expensive frame-capture cards, and it is reasonable to assume that simple cameras, being devoid of moving parts, will soon be a cheaper accessory for personal computers than keyboards, microphones, and mice \\3  The possibilities for video-conferencing and other human-human interactions are obvious, but how might the ready availability of video sources enrich the way we interact with the machines themselves?     \\
+\end{frame}
+\begin{frame}
+\frametitle{3.1 augmented environments}
+1  In the office environment the computer has traditionally been thought of as a tool, in the same way that a typewriter or Rolodex is a tool \\2      We might hope that the computer of the future would be more like an assistant than like a typewriter, that it would perform mundane tasks on your behalf when it sees they are necessary rather than always operating directly under your control \\3  The more a secretary knows about your way of life, your preferred modes of work, how cluttered your desk is and when you are in a meeting, the more useful he or she can be to you \\4      This is part of the philosophy behind Computer-Augmented Environments; the desire to bring the computer `out of its box and give it more awareness of the world around, so that it augments and enhances daily life rather than attempting to replace it \\5  Can we, for example, make the computer understand what we do in our offices rather than putting an impoverished `office metaphor on the machines screen? Can we centre computational power around everyday objects with which users are already so familiar that they dont think of them as a human-computer interface? During work on the DigitalDesk [10, 16], for example, we experimented with ways of enabling the computer to recognise an ordinary pencil eraser, and using that as the means of deleting parts of an electronic image projected onto the desk \\
+\end{frame}
+\begin{frame}
+\frametitle{4 achieving augmented environments}
+1  There is an inherent difficulty in the goals of Computer-Augmented Environments (CAEs) \\2  For computers to have much understanding of the world around, they must be equipped with sensors to monitor it \\3      The solution is to give the computer a small number of senses which have a broad scope of application and which operate remotely, i \\4  The obvious candidates are vision and hearing, through the use of video cameras and microphones \\5      This paper describes the use of video in the creation of a Computer-Augmented Environment called BrightBoard, which uses a video camera and audio feedback to augment the facilities of an ordinary whiteboard \\
+\end{frame}
+\begin{frame}
+\frametitle{5 brightboard: the whiteboard as a user interface}
+1  VideoWhiteboard [15] used a translucent drawing screen on which the silhouette of the other party could be seen \\2      Such systems, while useful, have their failings \\3  To quote one user, "The computer never quite gets out of the way" \\4       Examples of whiteboard use observed by the author, which tend not to translate well into the electronic domain, include the following:           A `y was written on the board, but looked rather like a `g \\5        The whiteboard eraser had been temporarily mislaid, and a paper towel was used instead \\
+\end{frame}
+\begin{frame}
+\frametitle{6 what is brightboard?}
+1  BrightBoard    is a whiteboard \\2  (See examples below) \\3                            Some sample BrightBoard commands                                   A `Print command                              Selecting an area of the board                                A `Fax to Peter command                            BrightBoard can also operate as a more general input device for any computer-controlled system \\4  ("This mark is an `S \\5        the action to be taken when a particular command is specified \\
+\end{frame}
+\begin{frame}
+\frametitle{what is brightboard?}
+\begin{figure}\includegraphics[width=0.2\linewidth]{/home/kedar/Desktop/chi96/proceedings/papers/Stafford-Fraser/qsffg2.png}\end{figure}\begin{figure}\includegraphics[width=0.2\linewidth]{/home/kedar/Desktop/chi96/proceedings/papers/Stafford-Fraser/qsffg3.png}\end{figure}\begin{figure}\includegraphics[width=0.2\linewidth]{/home/kedar/Desktop/chi96/proceedings/papers/Stafford-Fraser/qsffg4.png}\end{figure}\begin{figure}\includegraphics[width=0.2\linewidth]{/home/kedar/Desktop/chi96/proceedings/papers/Stafford-Fraser/qsffg5.png}\end{figure}\begin{figure}\includegraphics[width=0.2\linewidth]{/home/kedar/Desktop/chi96/proceedings/papers/Stafford-Fraser/qsffg6.png}\end{figure}\begin{figure}\includegraphics[width=0.2\linewidth]{/home/kedar/Desktop/chi96/proceedings/papers/Stafford-Fraser/qsffg7.png}\end{figure}\begin{figure}\includegraphics[width=0.2\linewidth]{/home/kedar/Desktop/chi96/proceedings/papers/Stafford-Fraser/qsffg8.png}\end{figure}\begin{figure}\includegraphics[width=0.2\linewidth]{/home/kedar/Desktop/chi96/proceedings/papers/Stafford-Fraser/qsfsm1.png}\end{figure}\end{frame}
+\begin{frame}
+\frametitle{what is brightboard?}
+\begin{table}\begin{tabular}{|l|l|}\toprule\textbf{}&\textbf{A `Print' command}\\\midrule
+&Selecting an area of the board \\& A `Fax to Peter' command \\\bottomrule\end{tabular}\end{table}
+\end{frame}
+\begin{frame}
+\frametitle{7 how does brightboard work?}
+1  It centres around a loop containing the following steps:              Triggering - Wait until a suitable image can be captured, and then do so \\2        Preprocessing of the image \\3  (Thresholding, in the case of BrightBoard)       Item Recognition \\4           In practice, these stages may not be strictly sequential \\5      We shall look at each of these stages in turn \\
+\end{frame}
+\begin{frame}
+\frametitle{how does brightboard work?}
+\begin{figure}\includegraphics[width=0.2\linewidth]{/home/kedar/Desktop/chi96/proceedings/papers/Stafford-Fraser/qsffg9.png}\end{figure}\end{frame}
+\begin{frame}
+\frametitle{7.1 triggering}
+1  There are two considerations here:          Whiteboards suffer badly from obstruction - the interesting things are generally happening when somebody is obscuring the cameras view \\2        One of the aims of BrightBoard is that it should be practical to have it running all the time \\3     Both problems can be solved by the use of a `triggering module \\4  It calculates the percentage    P of these pixels which have changed by more than a certain threshold \\5      The triggering module can wait either for movement, or for stability \\
+\end{frame}
+\begin{frame}
+\frametitle{7.2 thresholding}
+1  If we are to analyse the writing on the board, we must now distinguish it from the background of the board itself \\2  A simple global threshold will not suffice, for two reasons:          The high proportion of white to black pixels means that analysis of the histogram does not generally reveal clear maxima and minima - the `black peak tends to get lost amid the noise of the `white \\3  1       the level of illumination on the board often varies dramatically from one side to the other \\4     There are many sophisticated methods available which attempt to solve the former by examining only pixels near the black/white boundaries, thus giving a better balance of black and white pixels [    5], and the latter by dividing the board into tiles, finding local thresholds suitable for the centre of each tile, and then extrapolating suitable values for points between these centres [    3] \\5      Unfortunately, these methods are rather too slow for an interactive system, so we use an adaptive thresholding algorithm developed by Wellner for the DigitalDesk [16] \\
+\end{frame}
+\begin{frame}
+\frametitle{7.3 item recognition}
+1  There are two distinct operations here; first we find the marks on the image of the board, then we attempt to recognise them \\
+\end{frame}
+\begin{frame}
+\frametitle{7.3.1 finding}
+1  We are not interested in blobs consisting of only a few pixels \\2      Once a black pixel is found, a flood-fill algorithm is used to find all the black pixels directly connected to that one \\3  As the fill proceeds, statistics about the pixels in the blob are gathered which will be used later in the recognition process; for example, the bounding box of the blob, the distribution of the pixels in each axis, the number of pixels which have white above them and the number with white to the right of them \\4  Beyond this limit the blob is unlikely to be anything we wish to recognise, so the flood fill continues, marking the pixels as `seen, but the statistics are not gathered \\5  When the fill completes, if the number of pixels is less than this upper limit but more than a specified lower limit, the blobs statistics are added to a list of items for further analysis \\
+\end{frame}
+\begin{frame}
+\frametitle{7.3.2 recognising}
+1  From these we can calculate a    feature vector - a set of real numbers representing various characteristics of the blob, which can be thought of as coordinates positioning the blob in an n-dimensional space \\2  At the time of writing, 12 dimensions are in use, and the values calculated are chosen to be reasonably independent of the scale of the blob or the thickness of the pen used \\3  For example, one value is the ratio of the number of black pixels with white above them to the number of black pixels with white to the right of them \\4  Moments have been found to be very useful in this type of pattern recognition [    2,    7], and a hardware implementation is possible allowing substantial speed improvements [    6] \\5                               \\
+\end{frame}
+\begin{frame}
+\frametitle{recognising}
+\begin{figure}\includegraphics[width=0.2\linewidth]{/home/kedar/Desktop/chi96/proceedings/papers/Stafford-Fraser/qsfsm10.png}\end{figure}\end{frame}
+\begin{frame}
+\frametitle{7.3.2 figure 4: a sample image captured... }
+1                                 \\
+\end{frame}
+\begin{frame}
+\frametitle{7.3.3 figure 5: ...and processed by brightboard }
+1  This has several limitations, however:          The scales of the dimensions are not in any way related, and a distance of 0 \\2 1 in one dimension may be far more significant than a distance of 1 \\3                         Figure 6: If circles are B prototypes and squares are R prototypes, what is X?               The third is that, in many of the dimensions, the groups formed by different symbols may overlap to a considerable degree \\4               Lastly, the values used for some dimensions are less reliable than others at distinguishing between symbols \\5       Several methods are available to improve the partitioning of the    n-space \\
+\end{frame}
+\begin{frame}
+\frametitle{7.3.3 neural alternatives}
+1  The use of a neural net could mean improved reliability and constant recognition time, at the expense of less predictability and more time-consuming analysis of the training set \\2  At present the training data consists of about 20 copies of each of the 17 symbols we recognise, and this is really far too small for neural net training \\3  This is less time-consuming than the capture of new training data, and early experiments show an encouraging improvement in both neural- and non-neural-based recognition rates \\4      The limitations of a very crude recogniser can be overcome to a substantial degree by the choice of command patterns \\5  The chances of these `false symbols occurring in such relationships as to constitute a valid command are, however, very small \\
+\end{frame}
+\begin{frame}
+\frametitle{8 analysing}
+1  For each blob found, BrightBoard assigns a unique number x and adds a rule to a Prolog database an assertion of the form:      bounds( itemx, w, e, n, s )  which specifies that blob    x has a bounding box delimited by the north-west corner (    w,    n) and the south-east corner (    e ,    s) \\2  In addition, if the blob has been recognised, a second assertion will be made, of the form:     issym( itemx, y )  which indicates that item    x has been recognised as being symbol    y \\3  A `Print command might then be defined as follows:     doprint :- issym(X, p), issym(Y, checkbox), inside(X, Y), /+ (inside(Z, Y), Z \= X)  This can be roughly translated as "there is a print command if we can find blobs X and Y such that X is a `P and Y is a `checkbox and X is inside Y, and nothing else is inside Y    2" \\4      On a SPARCstation 2, BrightBoard took 4 \\5 5 seconds to capture, threshold, display, analyse and recognise the `Fax to Bob command in the 740 x 570 image shown in Figure 4, from the time at which movement was no longer detected \\
+\end{frame}
+\begin{frame}
+\frametitle{9  executing}
+1  The final stage is to take action based on the analysis \\2  A `command file relates Prolog predicates such as `doprint to UNIX commands that will actually do the printing \\3  Each line in this file has the form:      \\
+\end{frame}
+\begin{frame}
+\frametitle{0 future possibilities}
+1      The first is that there is minimal configuration required to set it up \\2      Secondly, the system is not limited to whiteboards - any white surface will suffice \\3  The system, before acting on a command, for example, could request confirmation from the user which might be given with a `thumbs-up gesture \\4  Consider the following specification:          `A     P in a box, possibly followed by another symbol representing a digit which is also inside the box, constitutes a print command, where the number of copies is given by the digit, or is one if no digit exists \\5     It is difficult to imagine an easy way of representing this graphically \\
+\end{frame}
+\begin{frame}
+\frametitle{1 conclusions}
+1  The dramatic reduction in cost of video cameras and of the computing power needed to process their output opens up a wide variety of opportunities for novel human-computer interaction methods, especially by augmenting the capabilities of everyday objects and environments \\2  This can be less intrusive than more conventional methods of interaction because of the large amount of data that can be gathered from a camera with only a small amount of wiring, and because the camera is a remote sensor and so does not in any way interfere with the users normal use of the augmented objects \\3      BrightBoard is an example of this genre which illustrates some of the problems that will be issues to many video-augmented environments and shows what can be accomplished by combining relatively unsophisticated image processing and pattern recognition techniques with logic-based analysis of their results \\
+\end{frame}
+\begin{frame}
+\frametitle{2 acknowledgements}
+1  This work has been sponsored by Rank Xerox Research Centre, Cambridge, England (better known as `EuroPARC) \\2  We are grateful for their support and to Dr Pierre Wellner, Mik Lamming, Mike Flynn and Dr Richard Bentley for advice and assistance \\3      All product names are acknowledged as the trademarks of their respective owners \\
+\end{frame}
+\end{document}
